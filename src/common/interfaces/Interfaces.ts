@@ -5,17 +5,17 @@
  */
 export type StreetsResponseType = StreetsResponseTypeChild[];
 export type StreetsResponseTypeChildPrefix = {
-	Id: number;
-	Name: string;
-	ShortName: string;
+	id: number;
+	name: string;
+	shortName: string;
 }
 export type StreetsResponseTypeChild = {
-	Id: number;
-	Prefix: StreetsResponseTypeChildPrefix;
-	Name: string;
-	CityId: number;
-	City: string;
-	NameWithPrefix: string;
+	id: number;
+	prefix: StreetsResponseTypeChildPrefix;
+	name: string;
+	cityId: number;
+	city: string;
+	nameWithPrefix: string;
 }
 
 /**
