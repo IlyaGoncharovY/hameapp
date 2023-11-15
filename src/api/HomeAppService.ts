@@ -11,12 +11,12 @@ export const homeAPI = createApi({
                 url: '/Request/streets',
             }),
         }),
-        getCurrentHouses: builder.query<HousesResponseType[], number>({
+        getCurrentHouses: builder.query<HousesResponseType, number>({
             query: (streetId: number) => ({
                 url: `/Request/houses/${streetId}`,
             }),
         }),
-        getStocks: builder.query<StocksResponseType[], { streetsId: number, housesId: number }>({
+        getStocks: builder.query<StocksResponseType, { streetsId: number, housesId: number }>({
             query: ({ streetsId, housesId }) => ({
                 url: `/HousingStock`,
                 params: {
