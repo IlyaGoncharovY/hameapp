@@ -5,10 +5,21 @@ import {HomesContainer} from "../../homes/components/HomesContainer";
 
 export const StreetsContainer = () => {
 
-    const {data: streets, error, isLoading} = homeAPI.useGetAllStreetsQuery('')
+    const {
+        data: streets,
+        error,
+        isLoading
+    } = homeAPI.useGetAllStreetsQuery('')
 
+    if (isLoading) {
+        return <h1>...Загрузка улиц</h1>
+    }
+
+    if (error) {
+        return <h1>Произошла ошибка</h1>
+    }
     return (
-        <div style={{border: "2px solid black"}}>
+        <div style={{padding: "20px", margin: "20px"}}>
             <div>StreetsContainer</div>
             <div>
                 {streets && streets.map((street) =>
