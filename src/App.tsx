@@ -4,7 +4,7 @@ import {StreetsContainer} from "./features/streets/components/StreetsContainer";
 
 function App() {
   return (
-    <div className="App">
+    <div style={{padding: "20px", margin: "20px"}}>
       <StreetsContainer/>
     </div>
   );
