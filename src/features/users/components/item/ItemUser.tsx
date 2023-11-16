@@ -14,17 +14,19 @@ export const ItemUser: FC<IItemUser> = ({user, isLoadingUsers}) => {
 
     const deleteUserHandler = (bindId: number) => {
         deleteUser(bindId)
-            .unwrap()
-            .then(() => {
-                console.log("User deleted successfully");
-            })
-            .catch((error) => {
-                console.error("Error deleting user:", error);
-            });
     }
 
     return (
-        <div style={{padding: "20px", border: "2px solid purple", margin: "20px"}}>
+        <div style={{
+            width: "250px",
+            height: "250px",
+            border: "2px solid purple",
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
+            gap: "20px",
+            padding: "20px",
+            margin: "20px"
+        }}>
             <div>
                 Жилец
             </div>

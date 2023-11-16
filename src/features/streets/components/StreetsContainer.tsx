@@ -19,14 +19,11 @@ export const StreetsContainer = () => {
         return <h1>Произошла ошибка</h1>
     }
     return (
-        <div style={{padding: "20px", margin: "20px"}}>
-            <div>StreetsContainer</div>
-            <div>
-                {streets && streets.map((street) =>
-                    <HomesContainer key={street.id}
-                                    street={street}
-                    />)}
-            </div>
-        </div>
+        <>
+            {streets && streets.map((street) =>
+                <HomesContainer key={street.id}
+                                street={street}
+                />)}
+        </>
     );
 };

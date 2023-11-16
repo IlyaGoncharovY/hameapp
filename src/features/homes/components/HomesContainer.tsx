@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 
 import {homeAPI} from "../../../api/HomeAppService";
+import {useOpenData} from "../../../utils/customHook/useOpenData";
 import {StocksContainer} from "../../stocks/components/StocksContainer";
 import {StreetsResponseTypeChild} from "../../../common/interfaces/Interfaces";
 
@@ -9,6 +10,9 @@ interface IHomesContainer {
 }
 
 export const HomesContainer: FC<IHomesContainer> = ({street}) => {
+
+    const {isOpen, openDataHandler} = useOpenData()
+
     const {
         data: houses,
         error,
@@ -25,23 +29,28 @@ export const HomesContainer: FC<IHomesContainer> = ({street}) => {
 
     return (
         <div style={{padding: "20px", margin: "20px"}}>
-            <div>
-                Улица
-            </div>
-            <div>
+            <div style={{borderBottom: "4px solid black"}}>
                 <div>
-                    Город: {street.city}
+                    Улица
                 </div>
                 <div>
-                    Название: {street.nameWithPrefix}
+                    <div>
+                        Город: {street.city}
+                    </div>
+                    <div>
+                        Название: {street.nameWithPrefix}
+                    </div>
                 </div>
+                <button onClick={openDataHandler}>{!isOpen ? "Открыть улицы" : "Закрыть улицы"}</button>
             </div>
-            {houses && houses.map(house =>
-                <StocksContainer
-                    key={house.id}
-                    street={street}
-                    house={house}
-                />)}
+            {isOpen && <>
+                {houses && houses.map(house =>
+                    <StocksContainer
+                        key={house.id}
+                        street={street}
+                        house={house}
+                    />)}
+            </>}
         </div>
     );
 };
