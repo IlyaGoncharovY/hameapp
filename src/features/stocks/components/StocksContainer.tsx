@@ -6,7 +6,9 @@ import {
     HousesResponseTypeChild,
     StreetsResponseTypeChild
 } from "../../../common/interfaces/Interfaces";
+import {useOpenData} from "../../../utils/customHook/useOpenData";
 import {StockUserItem} from "../../users/components/StockUserItem";
+import {InputComponents} from "../../../common/components/InputComponents";
 
 interface IStocksContainer {
     house: HousesResponseTypeChild
@@ -14,6 +16,8 @@ interface IStocksContainer {
 }
 
 export const StocksContainer: FC<IStocksContainer> = ({street, house}) => {
+
+    const {isOpen, openDataHandler} = useOpenData()
 
     const {
         data: stocks,
@@ -63,13 +67,6 @@ export const StocksContainer: FC<IStocksContainer> = ({street, house}) => {
         }
     };
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setNewUser({
-            ...newUser,
-            [e.target.name]: e.target.value,
-        });
-    };
-
     if (isLoading) {
         return <h1>...Загрузка квартиры</h1>
     }
@@ -80,46 +77,35 @@ export const StocksContainer: FC<IStocksContainer> = ({street, house}) => {
 
     return (
         <div style={{padding: "20px", margin: "20px"}}>
-            <div>Квартира</div>
-            <div>
+            <div style={{borderBottom: "4px solid black"}}>
+                <div>Квартира</div>
                 <div>
-                    <input
-                        type="text"
-                        name="name"
-                        placeholder="Имя"
-                        value={newUser.name}
-                        onChange={handleInputChange}
-                    />
-                    <input
-                        type="text"
-                        name="phone"
-                        placeholder="Телефон"
-                        value={newUser.phone}
-                        onChange={handleInputChange}
-                    />
-                    <input
-                        type="text"
-                        name="email"
-                        placeholder="Email"
-                        value={newUser.email}
-                        onChange={handleInputChange}
+                    <InputComponents
+                        newUser={newUser}
+                        setNewUser={setNewUser}
+                        handleAddUser={handleAddUser}
+                        addUserIsLoading={addUserIsLoading}
+                        title={"Добавить жильца"}
                     />
                     {addUserError && <div>Что то не так с запросом =(</div>}
                 </div>
-                <button onClick={handleAddUser} disabled={addUserIsLoading}>Добавить жильца</button>
+                <div>
+                    <div>Номер дома: {house.id}</div>
+                    <div>Имя дома: {house.name}</div>
+                </div>
+                <button onClick={openDataHandler}>{!isOpen ? "Открыть квартиры" : "Закрыть квартиры"}</button>
             </div>
-            <div>
-                <div>Номер дома: {house.id}</div>
-                <div>Имя дома: {house.name}</div>
-            </div>
-            <div>
-                {stocks && stocks.map(stock =>
-                    <StockUserItem
-                        key={stock.addressId}
-                        stock={stock}
-                    />
-                )}
-            </div>
+            {
+                isOpen && <>
+                    {stocks && stocks.map(stock =>
+                        <StockUserItem
+                            key={stock.addressId}
+                            stock={stock}
+                        />
+                    )}
+                </>
+            }
+
         </div>
     );
 };
