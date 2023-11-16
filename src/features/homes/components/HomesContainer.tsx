@@ -9,11 +9,24 @@ interface IHomesContainer {
 }
 
 export const HomesContainer: FC<IHomesContainer> = ({street}) => {
-    const {data: houses, error, isLoading} = homeAPI.useGetCurrentHousesQuery(street.id)
+    const {
+        data: houses,
+        error,
+        isLoading
+    } = homeAPI.useGetCurrentHousesQuery(street.id)
+
+    if (isLoading) {
+        return <h1>...Загрузка домов</h1>
+    }
+
+    if (error) {
+        return <h1>Произошла ошибка</h1>
+    }
+
     return (
-        <div style={{border: "2px solid red"}}>
+        <div style={{padding: "20px", margin: "20px"}}>
             <div>
-                HomesContainer
+                Улица
             </div>
             <div>
                 <div>
