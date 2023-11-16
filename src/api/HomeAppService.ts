@@ -1,7 +1,8 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/dist/query/react';
 
 import {
-    addUserRequestType, addUserResponseSuccessType,
+    addUserRequestType,
+    addUserResponseSuccessType,
     addUserResponseType,
     HousesResponseType,
     StocksResponseType,
@@ -39,7 +40,7 @@ export const homeAPI = createApi({
                     addressId: addressId
                 }
             }),
-            providesTags: result => ["PUT"]
+            providesTags: result => result?.map(({ id }) => ({ type: 'PUT', id })) || [],
         }),
         addNewUser: builder.mutation<addUserResponseSuccessType, addUserRequestType>({
             query: (newUser) => ({
@@ -47,7 +48,6 @@ export const homeAPI = createApi({
                 method: "POST",
                 body: newUser
             }),
-
         }),
         bindUserInApartment: builder.mutation<void, { addressId: number, clientId: number }>({
             query: ({addressId, clientId}) => ({
