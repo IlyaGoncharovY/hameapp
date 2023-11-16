@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/hameapp/static/css/main.f855e6bc.css",
+    "main.js": "/hameapp/static/js/main.fba760a8.js",
+    "static/js/787.9cb36a6f.chunk.js": "/hameapp/static/js/787.9cb36a6f.chunk.js",
+    "index.html": "/hameapp/index.html",
+    "main.f855e6bc.css.map": "/hameapp/static/css/main.f855e6bc.css.map",
+    "main.fba760a8.js.map": "/hameapp/static/js/main.fba760a8.js.map",
+    "787.9cb36a6f.chunk.js.map": "/hameapp/static/js/787.9cb36a6f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f855e6bc.css",
+    "static/js/main.fba760a8.js"
+  ]
+}
