@@ -38,7 +38,8 @@ export const homeAPI = createApi({
                 url: `HousingStock/clients`,
                 params: {
                     addressId: addressId
-                }
+                },
+                validateStatus: (response) => response.status === 200
             }),
             providesTags: result => result?.map(({ id }) => ({ type: 'PUT', id })) || [],
         }),

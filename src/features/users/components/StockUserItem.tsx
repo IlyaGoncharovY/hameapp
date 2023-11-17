@@ -20,20 +20,18 @@ export const StockUserItem: FC<IStockUserItem> = ({stock}) => {
     }
 
     if (error) {
-        return <h1>Произошла ошибка</h1>
+        return null
     }
 
-    // const validUsers = users?.filter(user => user)
-
     return (
-        <>
+        <div style={{display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between"}}>
             {users && users.map(user =>
-                    <ItemUser
-                        key={user.id}
-                        user={user}
-                        isLoadingUsers={isLoading}
-                    />
-              )}
-        </>
+                <ItemUser
+                    key={user.id}
+                    user={user}
+                    isLoadingUsers={isLoading}
+                />
+            )}
+        </div>
     );
 };
