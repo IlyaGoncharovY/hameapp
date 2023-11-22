@@ -1,0 +1,10 @@
+.userContainer {
+    width: 250px;
+    height: 250px;
+    border: 2px solid purple;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+}
