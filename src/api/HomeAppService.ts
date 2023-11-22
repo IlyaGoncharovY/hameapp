@@ -39,7 +39,7 @@ export const homeAPI = createApi({
                 params: {
                     addressId: addressId
                 },
-                validateStatus: (response) => response.status === 200
+                // validateStatus: (response) => response.status === 200
             }),
             providesTags: result => result?.map(({ id }) => ({ type: 'PUT', id })) || [],
         }),

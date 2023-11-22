@@ -4,6 +4,8 @@ import {ItemUser} from "./item/ItemUser";
 import {homeAPI} from "../../../api/HomeAppService";
 import {StocksResponseTypeChild} from "../../../common/interfaces/Interfaces";
 
+import s from "./StockUserItem.module.css"
+
 interface IStockUserItem {
     stock: StocksResponseTypeChild
 }
@@ -20,17 +22,19 @@ export const StockUserItem: FC<IStockUserItem> = ({stock}) => {
     }
 
     if (error) {
-        return null
+        return <h1>Error</h1>
     }
 
     return (
-        <div style={{display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between"}}>
-            {users && users.map(user =>
+        <div className={s.containerUserItem}>
+            {users && users.map(user => user.id ?
                 <ItemUser
                     key={user.id}
                     user={user}
                     isLoadingUsers={isLoading}
                 />
+                :
+                null
             )}
         </div>
     );
