@@ -5,6 +5,8 @@ import {useOpenData} from "../../../utils/customHook/useOpenData";
 import {StocksContainer} from "../../stocks/components/StocksContainer";
 import {StreetsResponseTypeChild} from "../../../common/interfaces/Interfaces";
 
+import stylesContainer from "../../../common/styles/Containers.module.css";
+
 interface IHomesContainer {
     street: StreetsResponseTypeChild
 }
@@ -28,8 +30,8 @@ export const HomesContainer: FC<IHomesContainer> = ({street}) => {
     }
 
     return (
-        <div style={{padding: "20px", margin: "20px"}}>
-            <div style={{borderBottom: "4px solid black"}}>
+        <div className={stylesContainer.mainContainer}>
+            <div className={stylesContainer.descriptionContainer}>
                 <div>
                     Улица
                 </div>

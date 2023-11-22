@@ -3,6 +3,8 @@ import React, {FC} from 'react';
 import {homeAPI} from "../../../../api/HomeAppService";
 import {addUserResponseType} from "../../../../common/interfaces/Interfaces";
 
+import s from "./ItemUser.module.css"
+
 interface IItemUser {
     user: addUserResponseType
     isLoadingUsers: boolean
@@ -17,16 +19,7 @@ export const ItemUser: FC<IItemUser> = ({user, isLoadingUsers}) => {
     }
 
     return (
-        <div style={{
-            width: "250px",
-            height: "250px",
-            border: "2px solid purple",
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            alignItems: "center",
-            margin: '20px',
-        }}>
+        <div className={s.userContainer}>
             <div>
                 Жилец
             </div>

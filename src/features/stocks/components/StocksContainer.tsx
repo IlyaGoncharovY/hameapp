@@ -10,6 +10,8 @@ import {useOpenData} from "../../../utils/customHook/useOpenData";
 import {StockUserItem} from "../../users/components/StockUserItem";
 import {InputComponents} from "../../../common/components/InputComponents";
 
+import stylesContainer from "../../../common/styles/Containers.module.css"
+
 interface IStocksContainer {
     house: HousesResponseTypeChild
     street: StreetsResponseTypeChild
@@ -76,8 +78,8 @@ export const StocksContainer: FC<IStocksContainer> = ({street, house}) => {
     }
 
     return (
-        <div style={{padding: "20px", margin: "20px"}}>
-            <div style={{borderBottom: "4px solid black"}}>
+        <div className={stylesContainer.mainContainer}>
+            <div className={stylesContainer.descriptionContainer}>
                 <div>Квартира</div>
                 <div>
                     <InputComponents
