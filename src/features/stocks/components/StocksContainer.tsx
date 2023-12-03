@@ -8,9 +8,11 @@ import {
 } from "../../../common/interfaces/Interfaces";
 import {useOpenData} from "../../../utils/customHook/useOpenData";
 import {StockUserItem} from "../../users/components/StockUserItem";
+import {handleAddUser} from "../../../utils/addUser/handleAddUser";
 import {InputComponents} from "../../../common/components/InputComponents";
 
 import stylesContainer from "../../../common/styles/Containers.module.css"
+
 
 interface IStocksContainer {
     house: HousesResponseTypeChild
@@ -42,33 +44,9 @@ export const StocksContainer: FC<IStocksContainer> = ({street, house}) => {
         email: '',
     })
 
-    const handleAddUser = async () => {
-        try {
-            const response = await addUser(newUser)
-
-            if ('data' in response && response.data?.result === "Ok") {
-                const clientId = response.data.id;
-
-                const stockAddressId = stocks && stocks[0]?.addressId
-
-                if (stockAddressId) {
-                    await bindUserInApartment({
-                        addressId: stockAddressId,
-                        clientId: clientId,
-                    })
-                }
-            }
-
-            setNewUser({
-                name: '',
-                phone: '',
-                email: '',
-            })
-        } catch (error) {
-            console.error("Error adding new user:", error)
-        }
-    };
-
+    const wrapperAddUser = () => {
+        handleAddUser(addUser, newUser, stocks, bindUserInApartment, setNewUser)
+    }
     if (isLoading) {
         return <h1>...Загрузка квартиры</h1>
     }
@@ -85,7 +63,7 @@ export const StocksContainer: FC<IStocksContainer> = ({street, house}) => {
                     <InputComponents
                         newUser={newUser}
                         setNewUser={setNewUser}
-                        handleAddUser={handleAddUser}
+                        handleAddUser={wrapperAddUser}
                         addUserIsLoading={addUserIsLoading}
                         title={"Добавить жильца"}
                     />
